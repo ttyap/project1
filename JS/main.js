@@ -4,7 +4,7 @@
 
 let button = $('.btn')
 button.click(function(){
-  window.location.href='../Gamepage/index.html';
+  window.location.href='Gamepage/index.html';
 })
 
 

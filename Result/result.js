@@ -3,5 +3,5 @@
 
 let button = $('.btn')
 button.click(function(){
-  window.location.href='../Homepage/main.html';
+  window.location.href='../main.html';
 })
