@@ -9,27 +9,28 @@ button.click(function(){
 
 
 
+// // Timer function
+// var sec = 30;
+// var time = setInterval(myTimer, 1000);
 
-var sec = 30;
-var time = setInterval(myTimer, 1000);
+// function myTimer() {
+//     document.getElementById('timer').innerHTML = sec + " secs left";
+//     sec--;
+//     if (sec == -2) {
+//         clearInterval(time);
+//         alert("Time's up! ")
+//         window.location.href='../Result/asiandad3.html';
+//     }
+// }
 
-function myTimer() {
-    document.getElementById('timer').innerHTML = sec + " secs left";
-    sec--;
-    if (sec == -2) {
-        clearInterval(time);
-        alert("Time's up! ")
-        window.location.href='../Result/asiandad3.html';
-    }
-}
-
+//Quiz function
 var Quiz = function(){
   var self = this;
   this.init = function(){
     self._bindEvents();
   }
   
-  this.correctAnswers = [
+  this.correctAnswers = [ 
     { question: 1, answer: 'b' },
     { question: 2, answer: 'd' },
     { question: 3, answer: 'b' },
@@ -43,11 +44,11 @@ var Quiz = function(){
 
   ]
   
-  this._pickAnswer = function($answer, $answers){
+  this._pickAnswer = function($answer, $answers){ // Answer selction function
     $answers.find('.quiz-answer').removeClass('active');
     $answer.addClass('active');
   }
-  this._calcResult = function(){
+  this._calcResult = function(){ // Result calculation function
     var numberOfCorrectAnswers = 0;
     $('ul[data-quiz-question]').each(function(i){
       var $this = $(this),
@@ -61,17 +62,18 @@ var Quiz = function(){
         }
       }
       
-      if ( chosenAnswer == correctAnswer ) {
-        numberOfCorrectAnswers++;
+      if ( chosenAnswer == correctAnswer ) { 
         
-        // highlight this as correct answer
-        $this.find('.quiz-answer.active').addClass('correct');
+        numberOfCorrectAnswers++; // if chosen answer is the same as correct answer, add to num of correct answers 
+        
+        
+        $this.find('.quiz-answer.active').addClass('correct');// addclass new class if selected answer is correct or incorrect
       }
       else {
-        $this.find('.quiz-answer[data-quiz-answer="'+correctAnswer+'"]').addClass('correct');
+      
         $this.find('.quiz-answer.active').addClass('incorrect');
       } 
-    });
+    }); // Results
     if ( numberOfCorrectAnswers < 10 ) {
       alert(numberOfCorrectAnswers + ' out of 10')
       window.location.href='../Result/asiandad.html'
@@ -87,7 +89,7 @@ var Quiz = function(){
     var answersComplete = 0;
     $('ul[data-quiz-question]').each(function(){
       if ( $(this).find('.quiz-answer.active').length ) {
-        document.getElementById('numOfQuestion').innerHTML = "Questions " + (1 + answersComplete) + " of 10"
+        document.getElementById('numOfQuestion').innerHTML = "Questions " + (1 + answersComplete) + " of 10" // Question count
         answersComplete++
     }
     });
@@ -98,9 +100,7 @@ var Quiz = function(){
       return false;
     }
   }
-  this._showResult = function(result){
-    $('.quiz-result').addClass(result.code).html(result.text);
-  }
+  
   this._bindEvents = function(){
     $('.quiz-answer').on('click', function(){
       var $this = $(this),
@@ -109,7 +109,7 @@ var Quiz = function(){
       if ( self._isComplete() ) {
         
         self._showResult( self._calcResult() );
-        $('.quiz-answer').off('click');
+        $('.quiz-answer') // Show result once completed
         
       }
     });
