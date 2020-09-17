@@ -9,19 +9,19 @@ button.click(function(){
 
 
 
-// // Timer function
-// var sec = 30;
-// var time = setInterval(myTimer, 1000);
+// Timer function
+var sec = 30;
+var time = setInterval(myTimer, 1000);
 
-// function myTimer() {
-//     document.getElementById('timer').innerHTML = sec + " secs left";
-//     sec--;
-//     if (sec == -2) {
-//         clearInterval(time);
-//         alert("Time's up! ")
-//         window.location.href='../Result/asiandad3.html';
-//     }
-// }
+function myTimer() {
+    document.getElementById('timer').innerHTML = sec + " secs left";
+    sec--;
+    if (sec == -2) {
+        clearInterval(time);
+        alert("Time's up! ")
+        window.location.href='../Result/asiandad3.html';
+    }
+}
 
 //Quiz function
 var Quiz = function(){
